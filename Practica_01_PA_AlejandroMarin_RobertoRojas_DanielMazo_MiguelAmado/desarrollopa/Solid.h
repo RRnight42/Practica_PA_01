@@ -27,5 +27,7 @@ public:
 
 	virtual void Render() = 0;
 	virtual void Update();
+
+	virtual Solid* Clone() = 0;
 };
 

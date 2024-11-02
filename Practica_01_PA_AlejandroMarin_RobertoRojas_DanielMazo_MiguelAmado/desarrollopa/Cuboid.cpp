@@ -12,3 +12,9 @@ void Cuboid::Render()
 	glutSolidCube(1);
 	glPopMatrix();
 }
+
+Solid* Cuboid::Clone() {
+
+	return new Cuboid(*this);
+
+}

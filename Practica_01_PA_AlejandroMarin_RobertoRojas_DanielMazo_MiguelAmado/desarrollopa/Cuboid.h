@@ -24,6 +24,6 @@ public:
 	void SetWidth(float widthToSet) { this->width = widthToSet; }
 
 	void Render();
-
+	Solid* Clone();
 };
 
