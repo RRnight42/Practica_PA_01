@@ -21,14 +21,16 @@ private:
 
 public:
 
-	Emitter(EmitterConfiguration confToSet , vector<Solid*> particlesVector): conf(confToSet) , particlesVector(particlesVector){
+	Emitter(EmitterConfiguration confToSet): conf(confToSet){
 	
+		 // particles vector se configura sin argumento
+		
 		this->initialMilliseconds = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 		this->lastUpdateTime = 0;
 	
 	}
 
-
+	
 
 	void Render();
 	void Update();

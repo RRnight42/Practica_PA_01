@@ -17,7 +17,7 @@ void Emitter::Update() {
 
 	if ((currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime > this->conf.GetEmitterPeriod()){
 	
-	
+		particlesVector.push_back(conf.GetParticle()->Clone());
 	
 	}
 
