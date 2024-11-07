@@ -10,13 +10,15 @@ private:
 	Vector3D speed;
 	Vector3D orientationSpeed;
 	Color color;
+	
+
 public:
 	Solid(Vector3D pos = Vector3D() , Vector3D rot = Vector3D() , Vector3D spd = Vector3D(), Vector3D rotSpeed = Vector3D(), Color col = Color()) :
 		position(pos),
 		orientation(rot),
 		speed(spd),
 		orientationSpeed(rotSpeed),
-		color(col) {}
+		color(col){}
 
 	inline Vector3D GetPosition() { return this->position; }
 	inline Vector3D GetOrientation() { return this->orientation; }

@@ -9,6 +9,8 @@ void Game::Init()
 	
 	Emitter* emisorParticulas = new Emitter(config);
 	
+	emisorParticulas->SetPosition(Vector3D(0, 8, 0));
+
 	mainScene.AddGameObject(emisorParticulas);
 
 }

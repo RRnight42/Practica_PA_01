@@ -23,8 +23,10 @@ void Emitter::Update() {
 		if (particlesVector.size() < conf.GetMaxParticles()) {
 			int particleID = particlesVector.size();
 			Solid* newParitcle = conf.GetParticle()->Clone();
-			newParitcle->SetColor(this->randomColor(particleID));
-			//newParitcle->SetColor(Color(0.5, 0.5, 0.5 ,1.0));
+			//bolas de colorines
+			//newParitcle->SetColor(this->randomColor(particleID));
+			// para simular agua :)
+			newParitcle->SetColor(Color(0, 0, 1 ,0.4));
 			newParitcle->SetPosition(this->GetPosition());
 			
 			newParitcle->SetSpeed(this->randomSpeed(particleID));
