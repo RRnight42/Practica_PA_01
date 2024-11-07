@@ -1,6 +1,6 @@
 #pragma once
 #include "Solid.h"
-
+#include "Sphere.h"
 class EmitterConfiguration
 {
 
@@ -10,9 +10,10 @@ private:
 	int emitterPeriod;
 	Solid* particle;
 
+
 public: 
 
-	EmitterConfiguration(int period  , Solid* particle , int maxParticles = 10) : maxParticles(maxParticles) , emitterPeriod(period) , particle(particle){}
+	EmitterConfiguration(int period  , Solid* particle = new Sphere() , int maxParticles = 10) : maxParticles(maxParticles), emitterPeriod(period), particle(particle) {}
 
 	// metodos acesso
 	inline int GetMaxParticles() { return this->maxParticles; }
