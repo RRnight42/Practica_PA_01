@@ -12,8 +12,10 @@ private:
 
 public:
 
-	Sphere() : radius(0.3), slices(10), slacks(8), Solid()
-	{}
+
+	Sphere(float radius = 1.0 , int slices = 10 , int slacks = 8): Solid(), radius(radius), slices(slices), slacks(slacks) {}
+
+	
 
 	inline float GetRadius() { return this->radius; }
 	inline int GetSlices() { return this->slices; }

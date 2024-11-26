@@ -11,6 +11,7 @@ private:
 	vector<Solid*> gameObjects;
 	Camera camera;
 
+	
 public:
 
 	Scene()
@@ -18,13 +19,16 @@ public:
 		this->camera.SetPosition(Vector3D(0, 0, 20));
 	}
 
-	void AddGameObject(Solid* gameObject);
+	virtual void AddGameObject(Solid* gameObject);
 
-	void Init();
-	void Render();
-	void Update();
-	void ProcessKeyPressed(unsigned char key, int px, int py);
-	void ProcessMouseMovement(int x, int y);
-	void ProcessMouseClicked(int button, int state, int x, int y);
+	inline Camera GetCamera() const { return this->camera; }
+
+	virtual void Init();
+	virtual void Render();
+	virtual void Update();
+		
+	virtual void ProcessKeyPressed(unsigned char key, int px, int py);
+ 	virtual void ProcessMouseMovement(int x, int y);
+    virtual void ProcessMouseClicked(int button, int state, int x, int y);
 };
 

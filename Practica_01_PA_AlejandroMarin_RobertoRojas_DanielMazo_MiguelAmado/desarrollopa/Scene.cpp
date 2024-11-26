@@ -18,13 +18,17 @@ void Scene::Render()
 	}
 }
 
-void Scene::Update() 
+void Scene::Update()
 {
-	for (int idx = 0; idx < this->gameObjects.size(); idx++)
-	{
+
+    for (int idx = 0; idx < this->gameObjects.size(); idx++)
+    {
+    
 		this->gameObjects[idx]->Update();
-	}
+
+    }
 }
+
 
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {}
 

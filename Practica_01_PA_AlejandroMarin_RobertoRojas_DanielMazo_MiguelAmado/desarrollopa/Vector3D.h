@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
+
 class Vector3D
 {
 private:
@@ -18,19 +22,26 @@ public:
 		this->z = zArgument;
 	}
 
-	inline float GetX() { return this->x; }
-	inline float GetY() { return this->y; }
-	inline float GetZ() { return this->z; }
+	inline float GetX() const { return this->x; }
+	inline float GetY() const { return this->y; }
+	inline float GetZ() const { return this->z; }
 
 	inline void SetX(const float& xToSet) { this->x = xToSet; }
 	inline void SetY(const float& yToSet) { this->y = yToSet; }
 	inline void SetZ(const float& zToSet) { this->z = zToSet; }
 
 	Vector3D Add(Vector3D& other);
-	Vector3D operator+(Vector3D& other);
-
 	Vector3D Product(float a);
-	Vector3D operator*(float a);
+	Vector3D Division(const float value);
+	float DotProduct(const Vector3D& vectorToProduct);
+	float Magnitude();
+
+	Vector3D operator+(const Vector3D& vector);
+	Vector3D operator-(const Vector3D& vector);
+	Vector3D operator*(const float value);
+	Vector3D operator/(const float value);
+	float operator*(const Vector3D& vector);
+	float& operator[](const int& axis);
 
 
 };

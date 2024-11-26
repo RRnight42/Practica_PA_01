@@ -6,7 +6,14 @@
 #include "Torus.h"
 #include "Cylinder.h"
 #include "Scene.h"
+#include "TetrisScene.h"
 #include "Emitter.h"
+#include "Triangle.h"
+#include "Solid.h"
+#include "Model.h"
+#include "MaterialModel.h"
+#include "ModelLoader.h"
+#include "MaterialModelLoader.h"
 
 using namespace std;
 

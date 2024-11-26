@@ -8,17 +8,11 @@ private:
 	float alpha;
 
 public:
-	Color() : red(0.2), green(0.6), blue(0.3),
-		alpha(0.6)
+	Color(float red = 1.0  , float green = 1.0 , float blue = 1.0 , float alpha = 1.0) : red(red), green(green), blue(blue),
+		alpha(alpha)
 	{}
 
-	Color(float redArgument, float greenArgument, float blueArgument, float alphaArgument)
-	{
-		this->red = redArgument;
-		this->green = greenArgument;
-		this->blue = blueArgument;
-		this->alpha = alphaArgument;
-	}
+	
 
 	inline float GetRed() { return this->red; }
 	inline float GetGreen() { return this->green; }
@@ -56,6 +50,13 @@ public:
 		}
 	}
 
+	bool operator==(const Color& other) const {
+		return red == other.red && green == other.green && blue == other.blue;
+	}
+
+	bool operator!=(const Color& other) const {
+		return !(*this == other);
+	}
 
 };
 

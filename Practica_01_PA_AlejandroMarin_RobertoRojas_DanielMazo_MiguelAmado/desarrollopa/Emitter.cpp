@@ -24,9 +24,9 @@ void Emitter::Update() {
 			int particleID = particlesVector.size();
 			Solid* newParitcle = conf.GetParticle()->Clone();
 			//bolas de colorines
-			//newParitcle->SetColor(this->randomColor(particleID));
+			newParitcle->SetColor(this->randomColor(particleID));
 			// para simular agua :)
-			newParitcle->SetColor(Color(0, 0, 1 ,0.4));
+			//newParitcle->SetColor(Color(0, 0, 1 ,0.4));
 			newParitcle->SetPosition(this->GetPosition());
 			
 			newParitcle->SetSpeed(this->randomSpeed(particleID));
@@ -107,11 +107,11 @@ Vector3D Emitter::randomSpeed(int particleId) {
 
 	Vector3D spdReturn;
 
-	// Generador de números aleatorios con una semilla basada en particleId
+	
 	mt19937 generator(static_cast<unsigned int>(time(nullptr)) + particleId);
 	uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
-	// Genera los valores aleatorios entre -1 y 1 para cada componente
+	
 	spdReturn.SetX(distribution(generator));
 	spdReturn.SetY(distribution(generator));
 	spdReturn.SetZ(distribution(generator));
