@@ -13,8 +13,8 @@ class LoseScene : public Scene
 
 private : 
 
-	Text* textoPerder = new Text("Vaya, has perdido" , Text::Helvetica18 , 2.0f , Color(0,0,0,1));
-	Text* reinicio = new Text("¿Volver a empezar?", Text::Helvetica10 , 1.5f, Color(1,0.5,0,1));
+	Text* textoPerder = new Text("Vaya, has perdido" , Text::Helvetica18);
+	Text* reinicio = new Text("¿Volver a empezar?", Text::Helvetica10);
 
 	Model* donkyLose = new Model();
 

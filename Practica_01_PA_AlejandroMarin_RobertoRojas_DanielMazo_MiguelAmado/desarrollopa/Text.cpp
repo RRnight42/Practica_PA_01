@@ -3,7 +3,6 @@
 void Text::Render() {
 
 	glPushMatrix();
-	glScalef(this->scale, this->scale, 1.0f);
 	glColor4f(this->GetColor().GetRed(), this->GetColor().GetGreen(), this->GetColor().GetBlue() ,  this->GetColor().GetAlpha());
 	glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
 	glRasterPos3d(0, 0, 0);

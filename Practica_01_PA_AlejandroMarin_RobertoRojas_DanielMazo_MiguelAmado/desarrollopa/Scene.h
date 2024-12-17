@@ -10,7 +10,7 @@ class Scene
 private:
 	vector<Solid*> gameObjects;
 	Camera camera;
-
+	bool sceneHasEnded;
 	
 public:
 
@@ -22,6 +22,10 @@ public:
 	virtual void AddGameObject(Solid* gameObject);
 
 	inline Camera GetCamera() const { return this->camera; }
+
+	inline bool hasEndedScene() const { return this->sceneHasEnded; }
+	inline void endScene(const bool& End) { this->sceneHasEnded = End; }
+
 
 	virtual void Init();
 	virtual void Render();
