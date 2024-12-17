@@ -37,7 +37,7 @@ public:
 	Vector3D randomSpeed(int particleId);
 
 	void Render();
-	void Update();
+	void Update(const float& time);
 
 	Solid* Clone();
 

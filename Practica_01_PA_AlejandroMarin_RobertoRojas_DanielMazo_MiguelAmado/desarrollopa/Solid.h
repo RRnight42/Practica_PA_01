@@ -37,7 +37,7 @@ public:
 	void SetGravity(bool grav) { this->useGravity = grav; }
 
 	virtual void Render() = 0;
-	virtual void Update();
+	virtual void Update(const float& time);
 
 	virtual Solid* Clone() = 0;
 };

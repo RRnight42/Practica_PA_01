@@ -4,7 +4,12 @@
 void Game::Init()
 {
 	cout << "[GAME] Init..." << endl;
-	
+
+
+	for (int i = 0; i < scenes.size(); i++)
+		scenes[i]->Init();
+
+	/*
 	EmitterConfiguration config(20, new Sphere(), 150 );
 
 	Model* skull = new Model();
@@ -25,38 +30,45 @@ void Game::Init()
 	emisorParticulas->SetGravity(false);
 
 	
-	mainScene.AddGameObject(emisorParticulas);
+	this->activeScene->AddGameObject(emisorParticulas);
 	
-
+*/
 
 
 }
 
 void Game::Render()
 {
-	this->mainScene.Render();
+	this->activeScene->Render();
+	
 }
 
 void Game::Update()
 {
-	//cout << "[GAME] Update..." << endl;
-	this->mainScene.Update();
+	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
+
+	if ((currentTime.count() - this->initialMilliseconds.count() - this->lasUpdatedTime > UPDATE_PERIOD)) {
+	this->activeScene->Update(TIME_INCREMENT);
+	this->lasUpdatedTime = currentTime.count() - this->initialMilliseconds.count();
+	
+	}
+
+	
 }
 
 void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {
-	//this->display1.ProcessKeyPressed(key, px, py);
-	this->mainScene.ProcessKeyPressed(key, px, py);
+	this->activeScene->ProcessKeyPressed(key, px, py);
 }
 
 void Game::ProcessMouseClicked(int button, int state, int x, int y)
 {
 	cout << "[GAME] Click:" << button << endl;
-	this->mainScene.ProcessMouseClicked(button, state, x, y);
+	this->activeScene->ProcessMouseClicked(button, state, x, y);
 }
 
 void Game::ProcessMouseMovement(int x, int y)
 {
 	cout << "[GAME] Movement:" << x << ", " << y << endl;
-	this->mainScene.ProcessMouseMovement(x, y);
+	this->activeScene->ProcessMouseMovement(x, y);
 }

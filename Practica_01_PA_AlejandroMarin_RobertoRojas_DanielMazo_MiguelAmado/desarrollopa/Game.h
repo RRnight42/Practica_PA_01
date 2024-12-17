@@ -1,19 +1,12 @@
 #pragma once
-#include "Teapot.h"
-#include "Cube.h"
-#include "Sphere.h"
-#include "Display.h"
-#include "Torus.h"
-#include "Cylinder.h"
 #include "Scene.h"
-#include "TetrisScene.h"
-#include "Emitter.h"
-#include "Triangle.h"
-#include "Solid.h"
-#include "Model.h"
-#include "MaterialModel.h"
-#include "ModelLoader.h"
-#include "MaterialModelLoader.h"
+#include "LoseScene.h"
+#include "WinScene.h"
+#include "MenuScene.h"
+#include "GameScene.h"
+#include <chrono>
+
+using namespace chrono;
 
 using namespace std;
 
@@ -21,8 +14,16 @@ class Game
 {
 private:
 
-	Scene mainScene;
+	milliseconds initialMilliseconds;
+	long lasUpdatedTime;
 
+	const float TIME_INCREMENT = 0.4;
+	const long UPDATE_PERIOD = 10;
+
+
+	//Scene mainScene;
+	vector<Scene*> scenes;
+	Scene* activeScene;
 
 public:
 

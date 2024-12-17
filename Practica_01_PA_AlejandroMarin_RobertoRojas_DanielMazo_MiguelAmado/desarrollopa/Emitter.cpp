@@ -12,7 +12,7 @@ void Emitter::Render() {
 }
 
 
-void Emitter::Update() {
+void Emitter::Update(const float& time) {
 
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 	long deltaTime = (currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime;
@@ -37,7 +37,7 @@ void Emitter::Update() {
 
 	for (int i = 0; i < particlesVector.size(); i++) {
 
-		particlesVector[i]->Update();
+		particlesVector[i]->Update(time);
 
 	}
 

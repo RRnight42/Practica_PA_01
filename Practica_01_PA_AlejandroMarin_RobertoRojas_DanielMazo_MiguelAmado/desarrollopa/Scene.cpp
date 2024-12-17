@@ -12,19 +12,20 @@ void Scene::Init()
 void Scene::Render() 
 {
 	this->camera.Render();
+
 	for (int idx = 0; idx < this->gameObjects.size(); idx++)
 	{
 		this->gameObjects[idx]->Render();
 	}
 }
 
-void Scene::Update()
+void Scene::Update(const float& time)
 {
 
     for (int idx = 0; idx < this->gameObjects.size(); idx++)
     {
     
-		this->gameObjects[idx]->Update();
+		this->gameObjects[idx]->Update(time);
 
     }
 }

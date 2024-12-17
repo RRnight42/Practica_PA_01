@@ -25,10 +25,10 @@ public:
 
 	virtual void Init();
 	virtual void Render();
-	virtual void Update();
+	virtual void Update(const float& time);
 		
-	virtual void ProcessKeyPressed(unsigned char key, int px, int py);
- 	virtual void ProcessMouseMovement(int x, int y);
+	virtual void ProcessKeyPressed(unsigned char key, int px, int py) ;
+ 	virtual void ProcessMouseMovement(int x, int y) ;
     virtual void ProcessMouseClicked(int button, int state, int x, int y);
 };
 

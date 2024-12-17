@@ -138,19 +138,24 @@
     <ClCompile Include="Emitter.cpp" />
     <ClCompile Include="EmitterConfiguration.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="LoseScene.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="MaterialModel.cpp" />
     <ClCompile Include="MaterialModelLoader.cpp" />
     <ClCompile Include="MaterialTriangle.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Teapot.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Torus.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -162,20 +167,25 @@
     <ClInclude Include="Emitter.h" />
     <ClInclude Include="EmitterConfiguration.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="LoseScene.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MaterialModel.h" />
     <ClInclude Include="MaterialModelLoader.h" />
     <ClInclude Include="MaterialTriangle.h" />
+    <ClInclude Include="MenuScene.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Teapot.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Torus.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="WinScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
