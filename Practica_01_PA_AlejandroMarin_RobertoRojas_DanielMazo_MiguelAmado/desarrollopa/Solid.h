@@ -14,7 +14,7 @@ private:
 
 
 public:
-	Solid(Vector3D pos = Vector3D() , Vector3D rot = Vector3D() , Vector3D spd = Vector3D(), Vector3D rotSpeed = Vector3D(), Color col = Color() , bool gravity = true) :
+	Solid(Vector3D pos = Vector3D() , Vector3D rot = Vector3D() , Vector3D spd = Vector3D(), Vector3D rotSpeed = Vector3D(), Color col = Color() , bool gravity = false) :
 		position(pos),
 		orientation(rot),
 		speed(spd),

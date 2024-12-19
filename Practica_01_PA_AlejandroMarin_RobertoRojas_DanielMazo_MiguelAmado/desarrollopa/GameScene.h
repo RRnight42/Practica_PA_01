@@ -1,6 +1,12 @@
 #pragma once
 #include "Scene.h"
 #include "Cylinder.h"
+#include "Sphere.h"
+
+#include "Emitter.h"
+#include "EmitterConfiguration.h"
+#include "ModelLoader.h"
+#include "Model.h"
 
 class GameScene : public Scene
 {
