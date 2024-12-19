@@ -6,8 +6,10 @@ void Game::Init()
 	cout << "[GAME] Init..." << endl;
 
 	MenuScene* menu = new	MenuScene();
-	this->activeScene = menu;
+	GameScene* gameScene = new GameScene(GameScene::Level1);
+	this->activeScene = gameScene;
 	scenes.push_back(menu);
+	scenes.push_back(gameScene);
 
 	for (int i = 0; i < scenes.size(); i++)
 		scenes[i]->Init();

@@ -11,7 +11,7 @@ private:
     int slices;
     int slacks;
 public:
-    Cylinder() : baseRadius(0.15), topRadius(0.15), height(0.4), slices(16), slacks(16), Solid() {}
+    Cylinder(float Br = 0.1, float tR = 0.1 , float h = 1) : Solid(), baseRadius(Br), topRadius(tR), height(h), slices(16), slacks(16) {}
 
     inline float GetBaseRadius() const { return this->baseRadius; }
     inline void SetBaseRadius(const float& baseRadiusToSet) { this->baseRadius = baseRadiusToSet; }

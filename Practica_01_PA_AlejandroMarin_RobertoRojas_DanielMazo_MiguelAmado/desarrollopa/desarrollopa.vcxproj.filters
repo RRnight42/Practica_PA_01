@@ -203,11 +203,11 @@
     <ClInclude Include="MenuScene.h">
       <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="WinScene.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="WinScene.h">
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
