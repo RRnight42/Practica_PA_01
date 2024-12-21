@@ -36,6 +36,9 @@ public:
 	void SetColor(Color colorToSet) { this->color = colorToSet; }
 	void SetGravity(bool grav) { this->useGravity = grav; }
 
+	float Distance(const Solid& other);
+	float Distance(const Vector3D& other);
+
 	virtual void Render() = 0;
 	virtual void Update(const float& time);
 

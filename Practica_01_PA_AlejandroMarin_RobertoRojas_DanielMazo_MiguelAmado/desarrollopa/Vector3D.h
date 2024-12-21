@@ -31,9 +31,10 @@ public:
 	inline void SetZ(const float& zToSet) { this->z = zToSet; }
 
 	Vector3D Add(Vector3D& other);
-	Vector3D Product(float a);
-	Vector3D Division(const float value);
-	float DotProduct(const Vector3D& vectorToProduct);
+	Vector3D Product(const float& a);
+	Vector3D Division(const float& value);
+	float DotProduct(const Vector3D& other);
+	Vector3D CrossProduct(const Vector3D& other);
 	float Magnitude();
 
 	Vector3D operator+(const Vector3D& vector);
@@ -41,6 +42,7 @@ public:
 	Vector3D operator*(const float value);
 	Vector3D operator/(const float value);
 	float operator*(const Vector3D& vector);
+	Vector3D operator^(const Vector3D& vector);
 	float& operator[](const int& axis);
 
 

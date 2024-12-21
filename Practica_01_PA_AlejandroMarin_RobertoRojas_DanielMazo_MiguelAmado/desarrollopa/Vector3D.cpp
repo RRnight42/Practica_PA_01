@@ -16,22 +16,37 @@ Vector3D Vector3D::Add(Vector3D& other)
 
 
 
-Vector3D Vector3D::Product(float a)
+Vector3D Vector3D::Product(const float& a)
 {
 	return Vector3D(
-		this->GetX() * a,
-		this->GetY() * a,
-		this->GetZ() * a);
+		x * a,
+		y * a,
+		z * a);
 }
 
-Vector3D Vector3D::Division(const float value) {
+Vector3D Vector3D::Division(const float& value) {
 
 
 	Vector3D newVector(this->GetX() / value, this->GetY() / value, this->GetZ() / value);
 	return newVector;
 }
 
+float Vector3D::DotProduct(const Vector3D& other) {
+	return (x * other.x) + (y * other.y) + (z * other.z);
+}
 
+Vector3D Vector3D::CrossProduct(const Vector3D& other) {
+	float crossX = (y * other.z) - (z * other.y);
+	float crossY = (z * other.x) - (x * other.z);
+	float crossZ = (x * other.y) - (y * other.x);
+
+	return Vector3D(crossX, crossY, crossZ);
+}
+
+
+float Vector3D::Magnitude() {
+	return sqrt((x) * (x) + (y) * (y) + (z) * (z));
+}
 
 Vector3D Vector3D :: operator+(const Vector3D& vector)  {
 
@@ -71,6 +86,15 @@ float Vector3D::operator*(const Vector3D& vector)
 	float z = this->GetZ() * vector.GetZ();
 
 	return (x + y + z);
+}
+
+Vector3D Vector3D::operator^(const Vector3D& vector) {
+	float X = (y * vector.z) - (z * vector.y);
+	float Y = (z * vector.x) - (x * vector.z);
+	float Z = (x * vector.y) - (y * vector.x);
+
+	return Vector3D(X, Y, Z);
+
 }
 
 float& Vector3D :: operator[](const int& axis) {
