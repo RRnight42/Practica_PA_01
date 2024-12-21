@@ -12,38 +12,60 @@ void Emitter::Render() {
 }
 
 
-void Emitter::Update(const float& time) {
-
+void Emitter::Update(const float& time)
+{
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 	long deltaTime = (currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime;
-	cout << deltaTime << endl;
 
-	if (deltaTime > this->conf.GetEmitterPeriod()){
-	
-		if (particlesVector.size() < conf.GetMaxParticles()) {
+	if (deltaTime > this->nextInterval)
+	{
+		int burstSize = generateRandom(conf.GetMinBurstSize(), conf.GetMaxBurstSize());
+
+		for (int i = 0; i < burstSize && particlesVector.size() < conf.GetMaxParticles(); i++)
+		{
 			int particleID = particlesVector.size();
-			Solid* newParitcle = conf.GetParticle()->Clone();
-			//bolas de colorines
-			newParitcle->SetColor(this->randomColor(particleID));
-			// para simular agua :)
-			//newParitcle->SetColor(Color(0, 0, 1 ,0.4));
-			newParitcle->SetPosition(this->GetPosition());
+			Solid* newParticle = conf.GetParticle()->Clone();
+
+            newParticle->SetPosition(this->GetPosition());
+
+			if (conf.GetIsRandom()) {
 			
-			newParitcle->SetSpeed(this->randomSpeed(particleID));
-			particlesVector.push_back(newParitcle);
-		}		
+			
+			newParticle->SetColor(this->randomColor(particleID));
+			
+			newParticle->SetSpeed(this->randomSpeed(particleID));
+			
+			
+			}
+			else {
+			
+			newParticle->SetColor(conf.getColorConf());
+
+			newParticle->SetSpeed(conf.getSpeedConf());
+			
+			}
+		
+			particlesVector.push_back(newParticle);
+		}
+
 		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
+		this->nextInterval = generateRandom(conf.GetMinInterval(), conf.GetMaxInterval());
 	}
 
-	for (int i = 0; i < particlesVector.size(); i++) {
-
+	for (int i = 0; i < particlesVector.size(); i++)
+	{
 		particlesVector[i]->Update(time);
-
 	}
-
-
-
 }
+
+int Emitter::generateRandom(int min, int max)
+{
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dis(min, max);
+	return dis(gen);
+}
+
 
 Color Emitter::randomColor(int particleId) {
 
