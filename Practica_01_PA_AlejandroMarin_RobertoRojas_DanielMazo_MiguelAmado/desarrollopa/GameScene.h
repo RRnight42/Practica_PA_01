@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Cylinder.h"
 #include "Sphere.h"
+#include "Cuboid.h"
 
 #include "Emitter.h"
 #include "EmitterConfiguration.h"

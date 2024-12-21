@@ -40,6 +40,7 @@ public:
 
     void Render();
     void Update(const float& time);
+    Vector3D randomPositionOffsetZ(int particleId);
 
     Solid* Clone();
 };

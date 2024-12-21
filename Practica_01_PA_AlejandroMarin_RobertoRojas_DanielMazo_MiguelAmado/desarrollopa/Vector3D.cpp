@@ -48,6 +48,19 @@ float Vector3D::Magnitude() {
 	return sqrt((x) * (x) + (y) * (y) + (z) * (z));
 }
 
+void Vector3D::Normalize() {
+		float mag = this->Magnitude(); 
+		if (mag > 0.0f) {
+			this->x /= mag;
+			this->y /= mag;
+			this->z /= mag;
+		}
+		else {
+			throw std::runtime_error("No se puede normalizar un vector de magnitud cero.");
+		}
+	
+}
+
 Vector3D Vector3D :: operator+(const Vector3D& vector)  {
 
 	float x = this->GetX() + vector.GetX();

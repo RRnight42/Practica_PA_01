@@ -10,6 +10,7 @@ private:
     float height;
     int slices;
     int slacks;
+  
 public:
     Cylinder(float Br = 0.1, float tR = 0.1 , float h = 1 , int sli = 16 , int slk = 16) : Solid(), baseRadius(Br), topRadius(tR), height(h), slices(sli), slacks(slk) {}
 

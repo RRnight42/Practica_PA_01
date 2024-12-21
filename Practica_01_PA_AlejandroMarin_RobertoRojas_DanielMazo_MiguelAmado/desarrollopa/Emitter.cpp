@@ -21,30 +21,26 @@ void Emitter::Update(const float& time)
 	{
 		int burstSize = generateRandom(conf.GetMinBurstSize(), conf.GetMaxBurstSize());
 
-		for (int i = 0; i < burstSize && particlesVector.size() < conf.GetMaxParticles(); i++)
-		{
+		for (int i = 0; i < burstSize && particlesVector.size() < conf.GetMaxParticles(); i++) {
 			int particleID = particlesVector.size();
 			Solid* newParticle = conf.GetParticle()->Clone();
 
-            newParticle->SetPosition(this->GetPosition());
+			// Generar un desplazamiento solo en el eje Z
+			Vector3D basePosition = this->GetPosition();
+			Vector3D offset = this->randomPositionOffsetZ(particleID); // Usar el nuevo método
+			newParticle->SetPosition(basePosition + offset);
 
 			if (conf.GetIsRandom()) {
-			
-			
-			newParticle->SetColor(this->randomColor(particleID));
-			
-			newParticle->SetSpeed(this->randomSpeed(particleID));
-			
-			
+				newParticle->SetColor(this->randomColor(particleID));
+				newParticle->SetSpeed(this->randomSpeed(particleID));
 			}
 			else {
-			
-			newParticle->SetColor(conf.getColorConf());
-
-			newParticle->SetSpeed(conf.getSpeedConf());
-			
+				newParticle->SetColor(conf.getColorConf());
+				newParticle->SetSpeed(conf.getSpeedConf());
+				newParticle->SetOrientation(conf.getOrientationConf());
+				newParticle->SetOrientationSpeed(conf.getOrientationSpeedConf());
 			}
-		
+
 			particlesVector.push_back(newParticle);
 		}
 
@@ -56,7 +52,19 @@ void Emitter::Update(const float& time)
 	{
 		particlesVector[i]->Update(time);
 	}
+
+
 }
+
+Vector3D Emitter::randomPositionOffsetZ(int particleId) {
+	mt19937 generator(static_cast<unsigned int>(time(nullptr)) + particleId);
+	uniform_real_distribution<float> distribution(-5.0f, 5.0f); 
+
+	float offsetZ = distribution(generator); 
+
+	return Vector3D(0, 0, offsetZ);
+}
+
 
 int Emitter::generateRandom(int min, int max)
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector3D.h"
 #include "Color.h"
+#include "util.h"
 
 class Solid
 {
@@ -36,11 +37,14 @@ public:
 	void SetColor(Color colorToSet) { this->color = colorToSet; }
 	void SetGravity(bool grav) { this->useGravity = grav; }
 
-	float Distance(const Solid& other);
+	
 	float Distance(const Vector3D& other);
+	void SetSpeedMCU(Vector3D orbitPoint, float dis, Vector3D speedMCU);
 
 	virtual void Render() = 0;
 	virtual void Update(const float& time);
+
+
 
 	virtual Solid* Clone() = 0;
 };

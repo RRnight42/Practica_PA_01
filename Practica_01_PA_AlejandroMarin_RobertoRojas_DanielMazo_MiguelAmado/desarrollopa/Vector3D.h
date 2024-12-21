@@ -36,6 +36,7 @@ public:
 	float DotProduct(const Vector3D& other);
 	Vector3D CrossProduct(const Vector3D& other);
 	float Magnitude();
+	void Normalize();
 
 	Vector3D operator+(const Vector3D& vector);
 	Vector3D operator-(const Vector3D& vector);
