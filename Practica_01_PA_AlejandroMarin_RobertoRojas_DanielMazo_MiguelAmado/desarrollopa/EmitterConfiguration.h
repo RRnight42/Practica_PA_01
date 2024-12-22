@@ -12,7 +12,9 @@ private:
     int maxBurstSize;
     int minInterval;
     int maxInterval;
+    long lifetimePerParticle;
     Solid* particle;
+    bool loopEmitter;
     bool randomSpeedColor;
     Vector3D speedParticle;
     Vector3D orientationParticle;
@@ -27,6 +29,8 @@ public:
         int maxBurst = 5,
         int minInt = 500,
         int maxInt = 1500,
+        long particleLT = 5000,
+        bool loop = false,
         bool random = false,
         Vector3D speed = Vector3D(0, 1, 0),
         Vector3D orientation = Vector3D(),
@@ -37,6 +41,8 @@ public:
         maxBurstSize(maxBurst),
         minInterval(minInt),
         maxInterval(maxInt),
+        lifetimePerParticle(particleLT),
+        loopEmitter(loop),
         particle(particle),
         randomSpeedColor(random),
         speedParticle(speed),
@@ -51,6 +57,8 @@ public:
     inline int GetMaxBurstSize() const { return this->maxBurstSize; }
     inline int GetMinInterval() const { return this->minInterval; }
     inline int GetMaxInterval() const { return this->maxInterval; }
+    inline long getLifetimeParticle() const { return this->lifetimePerParticle; }
+    inline bool GetIsLooped() const { return this->loopEmitter; }
     inline bool GetIsRandom() const { return this->randomSpeedColor; }
     inline Vector3D getSpeedConf() const { return this->speedParticle; }
     inline Vector3D getOrientationConf() const { return this->orientationParticle; }

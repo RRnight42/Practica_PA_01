@@ -3,7 +3,7 @@
 #include "Cylinder.h"
 #include "Sphere.h"
 #include "Cuboid.h"
-
+#include "Text.h"
 #include "Emitter.h"
 #include "EmitterConfiguration.h"
 #include "ModelLoader.h"
@@ -13,7 +13,16 @@ class GameScene : public Scene
 {
 private:
 
+	Cuboid* carretera = new Cuboid(10, 2, 150);
+	Cuboid* sep1 = new Cuboid(0.5, 2, 160);
+	Cuboid* sep2 = new Cuboid(0.5, 2, 160);
+	Cuboid* sep3 = new Cuboid(0.5, 2, 160);
+	Cuboid* sep4 = new Cuboid(0.5, 2, 160);
 	
+	Emitter* emitterBarrelC1 = new Emitter();
+	Emitter* emitterBarrelC2 = new Emitter();
+	Emitter* emitterBarrelC3 = new Emitter();
+
 
 public:
 	

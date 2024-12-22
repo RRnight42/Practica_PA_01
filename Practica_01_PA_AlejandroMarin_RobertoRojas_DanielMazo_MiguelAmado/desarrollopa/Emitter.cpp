@@ -1,15 +1,18 @@
 #include "Emitter.h"
 #include<random>
 
-void Emitter::Render() {
-
-
+void Emitter::Render()
+{
 	for (int idx = 0; idx < this->particlesVector.size(); idx++)
 	{
-		this->particlesVector[idx]->Render();
+		// Verificar si la partícula es válida antes de renderizar
+		if (this->particlesVector[idx] != nullptr)
+		{
+			this->particlesVector[idx]->Render();
+		}
 	}
-
 }
+
 
 
 void Emitter::Update(const float& time)
@@ -17,24 +20,66 @@ void Emitter::Update(const float& time)
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 	long deltaTime = (currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime;
 
+	long currentMs = currentTime.count() - this->initialMilliseconds.count();
+
+	// Revisar partículas existentes
+	for (int i = 0; i < particlesVector.size(); i++)
+	{
+		// Validar si la partícula aún es válida (no es nullptr)
+		if (particlesVector[i] != nullptr)
+		{
+			long particleAge = currentMs - particleCreationTimes[i];
+
+			// Si la partícula excede su vida útil
+			if (particleAge > conf.getLifetimeParticle())
+			{
+				// Liberar memoria y marcar como nullptr
+				delete particlesVector[i];
+				particlesVector[i] = nullptr;
+
+				// Si el loop está habilitado, eliminar del vector
+				if (conf.GetIsLooped())
+				{
+					particlesVector.erase(particlesVector.begin() + i);
+					particleCreationTimes.erase(particleCreationTimes.begin() + i);
+					// Ajustar índice
+					i--;
+				}
+			}
+			else
+			{
+				// Actualizar la partícula solo si sigue siendo válida
+				particlesVector[i]->Update(time);
+			}
+		}
+	}
+
+	// No generar nuevas partículas si no estamos en modo loop y hemos alcanzado el máximo
+	if (!conf.GetIsLooped() && particlesVector.size() >= conf.GetMaxParticles())
+		return;
+
+	// Generar nuevas partículas si el intervalo lo permite
 	if (deltaTime > this->nextInterval)
 	{
 		int burstSize = generateRandom(conf.GetMinBurstSize(), conf.GetMaxBurstSize());
 
-		for (int i = 0; i < burstSize && particlesVector.size() < conf.GetMaxParticles(); i++) {
+		for (int i = 0; i < burstSize && particlesVector.size() < conf.GetMaxParticles(); i++)
+		{
 			int particleID = particlesVector.size();
 			Solid* newParticle = conf.GetParticle()->Clone();
 
 			// Generar un desplazamiento solo en el eje Z
 			Vector3D basePosition = this->GetPosition();
-			Vector3D offset = this->randomPositionOffsetZ(particleID); // Usar el nuevo método
+			Vector3D offset = this->randomPositionOffsetZ(particleID);
 			newParticle->SetPosition(basePosition + offset);
 
-			if (conf.GetIsRandom()) {
+			if (conf.GetIsRandom())
+			{
 				newParticle->SetColor(this->randomColor(particleID));
 				newParticle->SetSpeed(this->randomSpeed(particleID));
 			}
-			else {
+			else
+			{
 				newParticle->SetColor(conf.getColorConf());
 				newParticle->SetSpeed(conf.getSpeedConf());
 				newParticle->SetOrientation(conf.getOrientationConf());
@@ -42,23 +87,21 @@ void Emitter::Update(const float& time)
 			}
 
 			particlesVector.push_back(newParticle);
+			particleCreationTimes.push_back(currentMs);
 		}
 
 		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
 		this->nextInterval = generateRandom(conf.GetMinInterval(), conf.GetMaxInterval());
 	}
-
-	for (int i = 0; i < particlesVector.size(); i++)
-	{
-		particlesVector[i]->Update(time);
-	}
-
-
 }
+
+
+
+
 
 Vector3D Emitter::randomPositionOffsetZ(int particleId) {
 	mt19937 generator(static_cast<unsigned int>(time(nullptr)) + particleId);
-	uniform_real_distribution<float> distribution(-5.0f, 5.0f); 
+	uniform_real_distribution<float> distribution(-10.0f, 10.0f); 
 
 	float offsetZ = distribution(generator); 
 
