@@ -2,11 +2,10 @@
 #include "Solid.h"
 #include "Model.h"
 #include "Text.h"
-#include "ModelLoader.h"
 #include "UICanva.h"
 #include <vector>
 
-class Player : public Solid
+class Player : public Model
 {
 
 private:
@@ -15,53 +14,23 @@ private:
     int coinsValue; 
 
 
-
-    Text* coinsText; 
-
-    ModelLoader loader;
-
-    Model* player = new Model();
-
-    Model* heart1 = new Model();
-    Model* heart2 = new Model();
-    Model* heart3 = new Model();
-
-    Model* rayPowerUpUI = new Model();
-    Model* shieldPowerUpUI = new Model();
-    Model* speedPowerUpUI = new Model();
-    Model* nonActivePowerUps = nullptr;
-
-    Model* coinUI = new Model();
-
-
-    vector<Model*> PlayerElements; 
-
 public:
 
-    Player() : coinsValue(0), coinsText(new Text(coinsValue, Text::TimesNewRoman24)) {}
 
     enum PowerUp { None, Ray, Shield, SpeedReduce };
 
     PowerUp powerUp;
+    
+    Player() : lives(3) ,coinsValue(0), powerUp(None)  {}
 
-    inline PowerUp getCurrentPowerUp() { return this->powerUp; }
+    inline int getCurrentPowerUp() const;
     inline void setPowerUp(const PowerUp& pu) { this->powerUp = pu; }
     inline int getCoins() const { return coinsValue; }
 
-    void usePowerUp();
-    void InitAttributes();
+    int usePowerUp();
+    void AddLive();
     void LoseLive();
+    void addCoins();
 
-    inline vector<Model*> getPlayerModels();
-    
-    void UpdateCoinsText() {
-        coinsText->setText(coinsValue); 
-    }
-
-    void addCoins() {
-        coinsValue += 1;
-        UpdateCoinsText(); 
-    }
-
-    void Render();
+  
 };

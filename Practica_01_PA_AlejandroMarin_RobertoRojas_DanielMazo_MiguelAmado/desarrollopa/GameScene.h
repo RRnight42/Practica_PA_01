@@ -8,10 +8,14 @@
 #include "EmitterConfiguration.h"
 #include "ModelLoader.h"
 #include "Model.h"
+#include "Player.h"
+#include "UICanva.h"
 
 class GameScene : public Scene
 {
 private:
+
+	Player* player = new Player();
 
 	Cuboid* carretera = new Cuboid(10, 2, 150);
 	Cuboid* sep1 = new Cuboid(0.5, 2, 160);
@@ -23,6 +27,7 @@ private:
 	Emitter* emitterBarrelC2 = new Emitter();
 	Emitter* emitterBarrelC3 = new Emitter();
 
+	UICanva* canva = new UICanva();
 
 public:
 	

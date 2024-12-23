@@ -6,6 +6,8 @@ void GameScene::Init() {
 	// configuraciones comunes de todos los niveles
 	// dibujar escena y demas tralla
 
+
+	//player.se
 	carretera->SetPosition(Vector3D(0, -4, -60));
 	sep1->SetPosition(Vector3D(-1.7, -3.95, -60));
 	sep2->SetPosition(Vector3D(-5, -3.95, -60));
