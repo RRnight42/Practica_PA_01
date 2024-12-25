@@ -1,5 +1,14 @@
 #include "Player.h"
 
+void Player::Render() {
+
+    Model::Render();
+
+   
+
+}
+
+
 void Player::AddLive() {
 
 
@@ -26,9 +35,39 @@ void Player::addCoins() {
 
 int Player::usePowerUp() {
 
+    int power;
+
+    switch (this->powerUp) {
+
+
+    case None:
+        power = 0;
+        break;
+    case Ray:
+        power = 1;
+        break;
+    case Shield:
+        power = 2;
+        break;
+    case SpeedReduce:
+        power = 3;
+        break;
+    default:
+        power = 0;
+
+    }
 	this->powerUp = None;
-    return 0;
+    return power;
 }
+
+bool Player::setPowerUp(const Player::PowerUp& newPowerUp) {
+    if (this->powerUp == Player::None) {
+        this->powerUp = newPowerUp;
+        return true; 
+    }
+    return false;
+}
+
 inline int Player::getCurrentPowerUp() const {
 
 
@@ -52,4 +91,19 @@ inline int Player::getCurrentPowerUp() const {
     
     }
 
+}
+void Player::setUICanva(UICanva* ui) {
+    this->uiCanva = ui;
+}
+
+void Player::notifyUICanva() {
+    if (uiCanva != nullptr) {
+        uiCanva->UpdateHeartsUI(this->lives);
+        uiCanva->UpdateCoinsText(this->coinsValue);
+        uiCanva->SetActivePowerUpUI(this->powerUp);
+    }
+}
+
+bool Player::hasPowerUp() const {
+    return this->powerUp != None;
 }

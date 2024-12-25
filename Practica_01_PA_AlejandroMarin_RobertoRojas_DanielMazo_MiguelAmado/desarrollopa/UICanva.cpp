@@ -21,7 +21,7 @@ void UICanva::InitUI() {
  
 
     //posiciones en el canva
-    coinsText->SetPosition(this->GetPosition() + Vector3D(2,2,0));
+    coinsText->SetPosition(this->GetPosition() + Vector3D(13,9.5,0));
     heart1->SetPosition(this->GetPosition() + Vector3D(2, 2, 0));
     heart2->SetPosition(this->GetPosition() + Vector3D(2, 2, 0));
     heart3->SetPosition(this->GetPosition() + Vector3D(2, 2, 0));
@@ -73,7 +73,7 @@ void UICanva::UpdateHeartsUI(const int& currentLive) {
 }
 
 
-inline void UICanva::SetActivePowerUpUI(const int& power) {
+void UICanva::SetActivePowerUpUI(const int& power) {
 
     switch (power) {
 

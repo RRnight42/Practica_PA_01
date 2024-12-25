@@ -37,7 +37,7 @@ public:
         this->nextInterval = generateRandom(conf.GetMinInterval(), conf.GetMaxInterval());
     }
 
-
+    inline vector<Solid*> getParticles() { return this->particlesVector; }
 
     Color randomColor(int particleId);
     Vector3D randomSpeed(int particleId);
@@ -46,6 +46,9 @@ public:
     void Update(const float& time);
 
     inline void setConfiguration(const EmitterConfiguration& configuration) { this->conf = configuration; }
+
+    void removeParticle(Solid* particle);
+    void clearParticles();
     
     Vector3D randomPositionOffsetZ(int particleId);
 

@@ -141,42 +141,7 @@ Color Emitter::randomColor(int particleId) {
 }
 
 Vector3D Emitter::randomSpeed(int particleId) {
-	/*
-	Vector3D spdReturn;
 
-	srand(static_cast<unsigned int>(time(nullptr)));
-	
-	int pn;
-
-	for (int i = 0; i < 3; i++) {
-	
-		pn = rand() % 2;
-
-		float randomValue = (static_cast<float>(rand()) / RAND_MAX);
-		
-		if (pn == 1) {
-		
-			randomValue *= -1;
-		
-		}
-	
-		switch (i) {
-		case 0:
-			spdReturn.SetX(randomValue);
-			break;
-		case 1:
-			spdReturn.SetY(randomValue);
-			break;
-		case 2:
-			spdReturn.SetZ(randomValue);
-			break;
-		default:
-			break;
-		}
-	
-	}
-
-	return spdReturn*0.1f;*/
 
 	Vector3D spdReturn;
 
@@ -191,6 +156,29 @@ Vector3D Emitter::randomSpeed(int particleId) {
 
 	return spdReturn * 0.05f;
 }
+
+void Emitter::removeParticle(Solid* particle) {
+	for (int i = 0; i < particlesVector.size(); i++) {
+		
+		if (particlesVector[i] == particle) {
+			
+			delete particlesVector[i];
+			
+			particlesVector.erase(particlesVector.begin() + i);
+			
+			return;
+		}
+	}
+}
+
+void Emitter::clearParticles() {
+	for (Solid* particle : particlesVector) {
+		delete particle; 
+	}
+	particlesVector.clear(); 
+	particleCreationTimes.clear(); 
+}
+
 
 Solid* Emitter::Clone() {
 

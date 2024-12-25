@@ -33,10 +33,11 @@ public:
 
     UICanva() : coinsText(new Text( int(0) , Text::TimesNewRoman24)) , activePowerUp(nullptr) , powerUi(0){}
 
-    void UpdateCoinsText(const int& coinsValue) { this->coinsText->setText(coinsValue); }
+
     void InitUI();
+    void UpdateCoinsText(const int& coinsValue) { this->coinsText->setText(coinsValue); }    
     void UpdateHeartsUI(const int& currentLive);
-    inline void SetActivePowerUpUI(const int& power);
+    void SetActivePowerUpUI(const int& power);
     
     void Render();
     Solid* Clone();

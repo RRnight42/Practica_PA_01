@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 #include "Scene.h"
 #include "Cylinder.h"
 #include "Sphere.h"
@@ -9,13 +10,21 @@
 #include "ModelLoader.h"
 #include "Model.h"
 #include "Player.h"
+#include  "PowerUp.h"
 #include "UICanva.h"
+
+using namespace std;
 
 class GameScene : public Scene
 {
 private:
 
+	ModelLoader loader; 
+
 	Player* player = new Player();
+
+
+	Sphere* shield = new Sphere(2, 15, 10);
 
 	Cuboid* carretera = new Cuboid(10, 2, 150);
 	Cuboid* sep1 = new Cuboid(0.5, 2, 160);
@@ -27,7 +36,27 @@ private:
 	Emitter* emitterBarrelC2 = new Emitter();
 	Emitter* emitterBarrelC3 = new Emitter();
 
+	Emitter* emitterWideBarrel1 = new Emitter();
+	Emitter* emitterWideBarrel2 = new Emitter();
+
+	Emitter* emitterPowerUp1 = new Emitter();
+	Emitter* emitterPowerUp2 = new Emitter();
+	Emitter* emitterPowerUp3 = new Emitter();
+
 	UICanva* canva = new UICanva();
+
+
+	// powerups 
+
+	vector<Emitter*> barrelEmitters;
+	vector <Emitter*> powerUpEmitters;
+
+
+	bool shieldEffect = false;
+	bool speedEffect = false;
+	const float reduce = 0.5;
+	chrono::steady_clock::time_point timePowerUp;
+
 
 public:
 	
@@ -40,8 +69,32 @@ public:
 
 	GameScene(Level levelToSet) : level(levelToSet){}
 
+	void usePowerUpPlayer();
+	void recogerPowerUp(Player::PowerUp nuevoPowerUp);
+
+
+
 	void Init();
 
+	// player 
+	
+	void powerUpCollisions();
 
+	
+	void barrelCollisions();  //proximamente
+
+
+	//powerups
+
+	void activateRay();
+	void activateShield();
+	void activateSpeedReduce(const float& speedFactor);
+
+	//inputs
+
+	void ProcessKeyPressed(unsigned char key, int px, int py);
+
+
+	void Update(const float& time);
 };
 

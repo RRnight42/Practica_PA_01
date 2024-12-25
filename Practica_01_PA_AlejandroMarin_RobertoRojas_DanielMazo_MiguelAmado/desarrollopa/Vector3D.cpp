@@ -61,6 +61,16 @@ void Vector3D::Normalize() {
 	
 }
 
+
+float Vector3D::Distance(const Vector3D& other) {
+	
+	float dx = other.GetX() - this->GetX();
+	float dy = other.GetY() - this->GetY();
+	float dz = other.GetZ() - this->GetZ();
+	return sqrt(dx * dx + dy * dy + dz * dz);
+}
+
+
 Vector3D Vector3D :: operator+(const Vector3D& vector)  {
 
 	float x = this->GetX() + vector.GetX();
