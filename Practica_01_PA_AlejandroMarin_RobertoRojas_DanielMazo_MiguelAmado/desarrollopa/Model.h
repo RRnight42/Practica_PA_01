@@ -19,6 +19,12 @@ public:
 
 	Model() {}
 
+
+	void SetModel(const Model& other) {
+
+		this->TriangleCollection = other.TriangleCollection;
+	}
+
 	void AddTriangle(Triangle triangle);
 
 	void Clear();

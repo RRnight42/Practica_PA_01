@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "Player.h"
 #include<random>
 
 void GameScene::Init() {
@@ -49,8 +50,8 @@ void GameScene::Init() {
 
 	if (this->getLevel() == this->Level1) {
 
-		EmitterConfiguration confBarrelLevel1(new Cylinder(), 4, 1, 2, 3000, 7000, 7000, true, false, Vector3D(0, 0, 0.3), Vector3D(0, 90, 0), Vector3D(0, 0, 1), Color(1, 0, 0, 1));		
-
+		EmitterConfiguration confBarrelLevel1(new Cylinder(), 4, 1, 2, 3000, 7000, 7000, true, false, Vector3D(0, 0, 0.5), Vector3D(0, 90, 0), Vector3D(0, 0, 1), Color(1, 0, 0, 1));		
+		//EmitterConfiguration confPowerUpLevel1(new PowerUp(this->loader), 3, 1, 1, 8000, 15000, 7000,true , false, Vector3D(0, 0, 0.5), Vector3D(0, 0, 0) , Vector3D(0,1,0));
 		
 		emitterBarrelC1->setConfiguration(confBarrelLevel1);
 		emitterBarrelC2->setConfiguration(confBarrelLevel1);
@@ -101,19 +102,9 @@ void GameScene::Update(const float& time) {
 			shieldEffect = false;
 			speedEffect = false;
 
-			if (player->getCurrentPowerUp() == Player::Shield) {
-				player->setPowerUp(Player::None); // Quitamos el escudo
-				shield->SetColor(Color(0, 1, 1, 0));
-				cout << "update: Escudo desactivado." << endl;
-			}
+			resetTimeEffects();
 
-			// Restaurar velocidad de los barriles si es necesario
-			for (Emitter* em : barrelEmitters) {
-				for(Solid* barrel : em->getParticles()){
-				barrel->SetSpeed(Vector3D(0,0,barrel->GetSpeed().GetZ() * 2)); // Restauramos la velocidad original
-				}
-				
-			}
+			
 			
 		}
 	}
@@ -149,15 +140,13 @@ void GameScene::usePowerUpPlayer() {
 		player->notifyUICanva();
 	}
 }
-void GameScene::recogerPowerUp(Player::PowerUp nuevoPowerUp) {
-	if (!player->setPowerUp(nuevoPowerUp)) {
+void GameScene::recogerPowerUp(const int& nuevoPowerUp) {
 		
 		if (player->getCurrentPowerUp() != 0) {
 			cout << "Usa tu powerup antes de coger otro" << endl;
-		}
-	}
-	else {
+		}else {
 		// Actualizar UICanva con el nuevo power-up
+		player->setPowerUp(nuevoPowerUp);
 		player->notifyUICanva();
 	}
 }
@@ -167,11 +156,11 @@ void GameScene::powerUpCollisions() {
 	for (Emitter* emisor : powerUpEmitters) {
 		for (Solid* particle : emisor->getParticles()) {
 
-			PowerUp* powerUp = dynamic_cast<PowerUp*>(particle);
+			PowerUp* powerUp = static_cast<PowerUp*>(particle);
 
 			if (player->GetPosition().Distance(powerUp->GetPosition()) < player->getDistanceColission()) {
 				// Colisión detectada: recoger el power-up
-				recogerPowerUp(static_cast<Player::PowerUp>(powerUp->getPowerUpType()));
+				recogerPowerUp(static_cast<Player::PowerUp>(powerUp->GetType()));
 
 				emisor->removeParticle(powerUp);
 				break; 
@@ -212,6 +201,38 @@ void GameScene::activateSpeedReduce(const float& speedFactor) {
 
 
 }
+
+void GameScene::resetTimeEffects() {
+
+
+
+	if (player->getCurrentPowerUp() == 2) {
+		player->setPowerUp(0); // Quitamos el escudo
+		shield->SetColor(Color(0, 1, 1, 0));
+		cout << "update: Escudo desactivado." << endl;
+	}
+
+	if (player->getCurrentPowerUp() == 3) {
+		player->setPowerUp(0); // Quitamos la velocidad
+		cout << "update: velocidad desactivada." << endl;
+	}
+
+	// Restaurar velocidad de los barriles si es necesario
+	for (Emitter* em : barrelEmitters) {
+		for (Solid* barrel : em->getParticles()) {
+			barrel->SetSpeed(Vector3D(0, 0, barrel->GetSpeed().GetZ() * 2)); // Restauramos la velocidad original
+		}
+
+	}
+
+
+}
+
+
+
+
+
+
 
 void GameScene::ProcessKeyPressed(unsigned char key, int px, int py) {
 

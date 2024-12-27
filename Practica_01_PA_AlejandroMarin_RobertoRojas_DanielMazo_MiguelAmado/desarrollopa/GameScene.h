@@ -70,7 +70,7 @@ public:
 	GameScene(Level levelToSet) : level(levelToSet){}
 
 	void usePowerUpPlayer();
-	void recogerPowerUp(Player::PowerUp nuevoPowerUp);
+	void recogerPowerUp(const int& nuevoPowerUp);
 
 
 
@@ -81,7 +81,7 @@ public:
 	void powerUpCollisions();
 
 	
-	void barrelCollisions();  //proximamente
+	//void barrelCollisions();  //proximamente
 
 
 	//powerups
@@ -89,7 +89,8 @@ public:
 	void activateRay();
 	void activateShield();
 	void activateSpeedReduce(const float& speedFactor);
-
+	
+	void resetTimeEffects();
 	//inputs
 
 	void ProcessKeyPressed(unsigned char key, int px, int py);

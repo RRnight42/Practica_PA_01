@@ -60,36 +60,22 @@ int Player::usePowerUp() {
     return power;
 }
 
-bool Player::setPowerUp(const Player::PowerUp& newPowerUp) {
+void Player::setPowerUp(const int& newPowerUp) {
     if (this->powerUp == Player::None) {
-        this->powerUp = newPowerUp;
-        return true; 
+        this->powerUp = static_cast<Player::PowerUp>(newPowerUp);
+        
     }
-    return false;
+    else {
+    
+    
+    }
+  
 }
 
-inline int Player::getCurrentPowerUp() const {
+int Player::getCurrentPowerUp() {
 
 
-    switch (this->powerUp) {
-    
-    
-    case None:
-        return 0;
-        break;
-    case Ray:
-        return 1;
-        break;
-    case Shield:
-        return 2;
-        break;
-    case SpeedReduce:
-        return 3;
-        break;
-    default:
-        return 0;
-    
-    }
+    return this->powerUp;
 
 }
 void Player::setUICanva(UICanva* ui) {

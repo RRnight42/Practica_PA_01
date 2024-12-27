@@ -1,17 +1,44 @@
 #pragma once
 #include "Model.h"
-class PowerUp : public Model
-{
+#include "ModelLoader.h"
+#include <cstdlib> // Para rand() y srand()
+#include <ctime>   // Para time()
 
+class PowerUp : public Model {
+
+    
 private:
+    int type;           
+   
 
-	enum PowerUpType {Ray , Shield , Speed};
+public:
+    
+    PowerUp(ModelLoader& modelLoader){
+        
+        srand(static_cast<unsigned>(time(0))); 
+        this->type = (rand() % 3 + 1); 
 
-	PowerUpType typePowerUp;
+        
+        switch (this->type) {
+        case 1:
+            modelLoader.LoadModel("path_to_ray_model.obj");
+            this->SetModel(modelLoader.GetModel());
+            this->PaintColor(Color(1, 1, 0, 1));
+            break;
+        case 2:
+            modelLoader.LoadModel("path_to_shield_model.obj");
+            this->SetModel(modelLoader.GetModel());
+            this->PaintColor(Color(0.5, 0.5, 0.7, 1));
+            break;
+        case 3:
+            modelLoader.LoadModel("path_to_speed_reduce_model.obj");
+            this->SetModel(modelLoader.GetModel());
+            this->PaintColor(Color(0, 0, 1, 1));
+            break;
+        }
+    }
 
-public :
-
-	inline PowerUpType getPowerUpType() { return this->typePowerUp; };
-
+    inline int GetType() const { return this->type; }
 };
+
 

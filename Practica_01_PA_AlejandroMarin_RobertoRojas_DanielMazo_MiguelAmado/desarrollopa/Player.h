@@ -33,8 +33,8 @@ public:
     inline float getDistanceColission() const { return this->distanceColission; }
     inline float getDistanceColissionWide() const { return this->distanceColissionWideBarrel; }
 
-    inline int getCurrentPowerUp() const;
-    inline bool setPowerUp(const PowerUp& pu);
+     int getCurrentPowerUp();
+     void setPowerUp(const int& pu);
 
     inline int getCarril() const { return this->carril; }
     inline void setCarril(const int& carrilSet) { this->carril = carrilSet; }

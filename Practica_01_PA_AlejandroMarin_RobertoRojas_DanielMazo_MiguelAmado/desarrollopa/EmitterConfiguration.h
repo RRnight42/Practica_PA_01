@@ -1,5 +1,6 @@
 #pragma once
 #include "Solid.h"
+#include "Model.h"
 #include "Vector3D.h"
 #include "Color.h"
 #include "Sphere.h"
